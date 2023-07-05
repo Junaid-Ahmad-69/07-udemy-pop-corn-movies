@@ -3,6 +3,7 @@ import Main from "./Components/Main/Main";
 import {useEffect, useState} from "react";
 import {tempMovieData, tempWatchedData} from "./utils/data";
 import TextHider from "./Components/TextHider/TextHider"
+import CurrencyChallenge from "./Components/CurrencyChallenge/CurrencyChallenge";
 
 const key = `408487b8`;
 export default function App() {
@@ -74,6 +75,7 @@ export default function App() {
             <Main movies={movies} loader={isLoading} error={error} selectId={selectId} onSelectId={handleSelectedId}
                   onCloseMovie={handleCloseId} onAddWatch={handleAddWatchList} watched={watched}
                   onRemoveMovie={handleRemoveMovie}/>
+            {/*<CurrencyChallenge/>*/}
             {/*<StarRating maxlength="25" message={["Terrible", "Bad", "Ok", "Good", "Amazing"]}/>*/}
             {/*<Test/>*/}
 
