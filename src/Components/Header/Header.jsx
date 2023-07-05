@@ -3,12 +3,12 @@ import Search from "./Search/Search";
 import NumResult from "./NumResult/NumResult";
 import Logo from "./Logo/Logo";
 
-const Header = ({movies}) => {
+const Header = ({movies, query, setQuery}) => {
 
     return (
         <nav className="nav-bar">
             <Logo/>
-            <Search/>
+            <Search query={query} setQuery={setQuery}/>
             <NumResult movies={movies}/>
 
         </nav>

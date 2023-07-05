@@ -10,14 +10,11 @@ const starContainerStyle = {
     display: 'flex',
     gap: "4px"
 }
+// StarRating.propTypes = {
+//     maxRating: PropTypes.number,
+// }
+const StarRating = ({maxlength = 2, color = "#fcc419", size = "48px", message = [], onSetRating}) => {
 
-
-
-
-const StarRating = ({maxlength = 2, color = "#fcc419", size = "48px", message = [], onAddRating}) => {
-    StarRating.propTypes = {
-        maxRating: PropTypes.number,
-    }
     const textStyle = {
         lineHeight: "1",
         color,
@@ -28,7 +25,7 @@ const StarRating = ({maxlength = 2, color = "#fcc419", size = "48px", message = 
 
     function handlerRating(rate) {
         setRating(rate);
-        if (!rate) onAddRating(rate);
+        onSetRating(rate);
     }
 
     return (

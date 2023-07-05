@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import MovieList from "./MovieList/MovieList";
+import Loader from "../../Loader/Loader";
+import Error from "../../Error/Error";
 
-const ListBox = ({movies}) => {
+const ListBox = ({movies, loader, error, onSelectId}) => {
 
     const [isOpen1, setIsOpen1] = useState(true);
     return (
@@ -12,7 +14,9 @@ const ListBox = ({movies}) => {
             >
                 {isOpen1 ? "–" : "+"}
             </button>
-            {isOpen1 && <MovieList movies={movies}/>}
+            {isOpen1 && loader && <Loader/>}
+            {isOpen1 && !loader && !error && <MovieList movies={movies} onSelectId={onSelectId}/>}
+            {isOpen1 && error && <Error message={error}/>}
         </div>
     )
 }

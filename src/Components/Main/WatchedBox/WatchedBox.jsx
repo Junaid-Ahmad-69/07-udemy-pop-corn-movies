@@ -2,12 +2,11 @@ import React, {useState} from 'react'
 import {tempWatchedData} from "../../../utils/data";
 import WatchSummary from "./WatchSummary/WatchSummary";
 import WatchList from "./WatchList/WatchList";
+import MoviesDetails from "./MovieDetail/MovieDetail";
 
 
-const WatchedBox = () => {
-    const [watched, setWatched] = useState(tempWatchedData);
+const WatchedBox = ({selectId, onCloseMovie, onAddWatch, watched, onRemoveMovie}) => {
     const [isOpen2, setIsOpen2] = useState(true);
-
 
     return (
         <div className="box">
@@ -17,12 +16,11 @@ const WatchedBox = () => {
             >
                 {isOpen2 ? "–" : "+"}
             </button>
-            {isOpen2 && (
-                <>
-                    <WatchSummary watched={watched} />
-                  <WatchList watched={watched}/>
-                </>
-            )}
+            {isOpen2 && selectId ?
+                <MoviesDetails selectId={selectId} onCloseMovie={onCloseMovie} onAddWatch={onAddWatch} watched={watched}/> : <>
+                    <WatchSummary watched={watched}/>
+                    <WatchList watched={watched} onRemoveMovie={onRemoveMovie}/>
+                </>}
         </div>
     )
 }
