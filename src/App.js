@@ -1,19 +1,24 @@
 import Header from "./Components/Header/Header";
 import Main from "./Components/Main/Main";
 import {useEffect, useState} from "react";
-import {tempMovieData, tempWatchedData} from "./utils/data";
-import TextHider from "./Components/TextHider/TextHider"
-import CurrencyChallenge from "./Components/CurrencyChallenge/CurrencyChallenge";
-
+// import {tempMovieData, tempWatchedData} from "./utils/data";
+// import TextHider from "./Components/TextHider/TextHider"
+// import CurrencyChallenge from "./Components/CurrencyChallenge/CurrencyChallenge";
+// import movie from "./Components/Main/ListBox/MovieList/Movie/Movie";
 const key = `408487b8`;
 export default function App() {
-    const [movies, setMovies] = useState(tempMovieData);
-    const [isLoading, setIsLoading] = useState(false)
+    const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [selectId, setSelectId] = useState(null);
-    const [watched, setWatched] = useState([]);
     const [query, setQuery] = useState("inception");
-    const controller = new AbortController();
+
+    // const [watched, setWatched] = useState(() => {
+    //     const storeValue = localStorage?.getItem("watchlist");
+    //     return JSON.parse(storeValue)
+    // });
+    const [watched, setWatched] = useState([]);
+
 
     function handleSelectedId(id) {
         setSelectId(currentState => currentState === id ? null : id)
@@ -24,14 +29,21 @@ export default function App() {
     }
 
     function handleAddWatchList(movie) {
-        setWatched(prevMovie => [...prevMovie, movie]);
+        setWatched(  watched => [...watched, movie]);
     }
 
     function handleRemoveMovie(id) {
         setWatched(watched => watched.filter(movie => movie.imdbID !== id))
     }
 
+    // useEffect(() => {
+    //     localStorage?.setItem("watchlist", JSON.stringify(watched));
+    // }, [watched]);
+
+
     useEffect(() => {
+        const controller = new AbortController();
+
         async function fetchMovies() {
             try {
                 setIsLoading(true)
@@ -40,9 +52,7 @@ export default function App() {
                 if (!data.ok) {
                     throw new Error("Something went wrong with Fetching");
                 }
-
                 const res = await data.json();
-
                 if (res.Response === "False") {
                     throw new Error(`${query} Not Found`);
                 }
@@ -61,14 +71,11 @@ export default function App() {
                 setMovies([]);
             }
         }
-
         fetchMovies();
         return (() => {
             controller.abort()
         })
     }, [query]);
-
-
     return (
         <>
             <Header movies={movies} query={query} setQuery={setQuery}/>

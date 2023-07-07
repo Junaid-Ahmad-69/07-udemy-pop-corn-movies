@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {tempWatchedData} from "../../../utils/data";
 import WatchSummary from "./WatchSummary/WatchSummary";
 import WatchList from "./WatchList/WatchList";
 import MoviesDetails from "./MovieDetail/MovieDetail";

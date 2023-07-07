@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import Loader from "../../../Loader/Loader";
 import StarRating from "../../StarRating/StarRating";
-import Logo from "../../../Header/Logo/Logo";
 
 const key = `408487b8`;
 const MovieDetail = ({selectId, onCloseMovie, onAddWatch, watched}) => {
     const [movie, setMovie] = useState([])
     const [isLoading, setLoading] = useState(false);
     const [userRating, setUserRating] = useState("")
-    const isWatched = watched.map(movie => movie.imdbID).includes(selectId);
-    const watchedRating = watched.find(movie => movie.imdbID === selectId)?.userRating
+    const isWatched = watched?.map(movie => movie.imdbID).includes(selectId);
+    const watchedRating = watched?.find(movie => movie.imdbID === selectId)?.userRating
     const {
         Title: title,
         Year: year,
