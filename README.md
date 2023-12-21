@@ -1,3 +1,6 @@
+![Screenshot from 2023-12-21 19-39-19](https://github.com/Junaid-Ahmad-69/07-udemy-pop-corn-movies/assets/85307602/e1e41c23-8478-4961-9018-f3c672a18159)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
